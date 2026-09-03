@@ -1,6 +1,6 @@
-// src/components/Header.jsx
-import NavBar from './Navbar' // O './NavBar', asegúrate que coincida exacto con el nombre del archivo
-import Logo from "../../assets/icons/auth/logoSena.svg"
+
+import NavBar from './Navbar'
+import Logo from "../../../assets/icons/auth/logoSena.svg"
 import {Link} from "react-router-dom"
 
 export default function Header() {
