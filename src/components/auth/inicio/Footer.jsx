@@ -1,11 +1,11 @@
-import Logo from "../../../assets/icons/auth/logoSena.svg"
+import Logo from "../../../assets/icons/auth/logoSena.svg";
+import { Link } from "react-router-dom";
 
 export default function Footer(){
     return(
         <>
             <footer className="w-full bg-[#001E30] text-slate-300 border-t border-white/5 select-none">
                 <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
                     <div className="flex flex-col gap-4">
                         <a href="/" className="flex items-center gap-3">
                             <img
@@ -31,36 +31,23 @@ export default function Footer(){
                         </h3>
                         <ul className="space-y-2.5 text-xs font-medium">
                             <li>
-                                <a
-                                    href="{{ route('areas.index') }}"
-                                    className="hover:text-[#8AFD5D] transition-colors flex items-center gap-1.5">
+                                <Link
+                                    to="/noticias"
+                                    className="hover:text-[#8AFD5D] transition-colors flex items-center gap-1.5"
+                                >
                                     <span>›</span>
-                                    Áreas de Formación
-                                </a>
+                                    Noticias
+                                </Link>
                             </li>
+
                             <li>
-                                <a
-                                    href="{{ route('trainingcenters.index') }}"
-                                    className="hover:text-[#8AFD5D] transition-colors flex items-center gap-1.5">
+                                <Link
+                                    to="/ofertas"
+                                    className="hover:text-[#8AFD5D] transition-colors flex items-center gap-1.5"
+                                >
                                     <span>›</span>
-                                    Centros de Formación
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="{{ route('courses.index') }}"
-                                    className="hover:text-[#8AFD5D] transition-colors flex items-center gap-1.5">
-                                    <span>›</span>
-                                    Oferta de Cursos
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="{{ route('teachers.index') }}"
-                                    className="hover:text-[#8AFD5D] transition-colors flex items-center gap-1.5">
-                                    <span>›</span>
-                                    Instructores
-                                </a>
+                                    Ofertas
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -135,13 +122,6 @@ export default function Footer(){
                                     Servidores operando al 100%
                                 </span>
                             </div>
-                        </div>
-                        <div class="mt-6">
-                            <a
-                                href="{{ route('login') }}"
-                                class="inline-block text-xs font-medium text-[#001E30] bg-[#8AFD5D] hover:bg-[#72db4c] px-4 py-2 rounded-lg transition-colors font-semibold shadow">
-                                Acceso Administrativo
-                            </a>
                         </div>
                     </div>
                 </div>

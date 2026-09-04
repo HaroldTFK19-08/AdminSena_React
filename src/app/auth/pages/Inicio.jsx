@@ -8,7 +8,7 @@ import Footer from "../../../components/auth/inicio/Footer"
 export default function Inicio(){
     return(
         <>
-            <div class="min-h-screen flex flex-col bg-[#081B28] text-slate-100 font-sans antialiased selection:bg-[#8AFD5D] selection:text-[#001E30]">
+            <div className="min-h-screen flex flex-col bg-[#081B28] text-slate-100 font-sans antialiased selection:bg-[#8AFD5D] selection:text-[#001E30]">
                 <Header/>
                 <main className="flex-1">
                     <Seccion1/>
