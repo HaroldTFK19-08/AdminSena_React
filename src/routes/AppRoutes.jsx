@@ -8,6 +8,9 @@ import InformacionInstructor from "../app/instructores/pages/Informacion"
 import HomeAdmin from "../app/admin/pages/Home"
 import HomeAprendiz from "../app/aprendices/pages/Home"
 import HomeInstructor from "../app/instructores/pages/Home"
+import PerfilAdmin from "../app/admin/pages/Perfil"
+import PerfilAprendiz from "../app/aprendices/pages/Perfil"
+import PerfilInstructor from "../app/instructores/pages/Perfil"
 
 const AppRoutes = () => {
     return(
@@ -20,8 +23,11 @@ const AppRoutes = () => {
                 <Route path="/aprendiz/completarPerfil" element={<InformacionAprendiz/>} />
                 <Route path="/instructor/completarPerfil" element={<InformacionInstructor/>} />
                 <Route path="/admin" element={<HomeAdmin/>}/>
+                <Route path="/admin/perfil" element={<PerfilAdmin/>}/>
                 <Route path="/aprendiz" element={<HomeAprendiz/>}/>
+                <Route path="/aprendiz/perfil" element={<PerfilAprendiz/>}/>
                 <Route path="/instructor" element={<HomeInstructor/>}/>
+                <Route path="/instructor/perfil" element={<PerfilInstructor/>}/>
             </Routes>
         </>
     )

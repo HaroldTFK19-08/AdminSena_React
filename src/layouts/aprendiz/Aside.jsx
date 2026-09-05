@@ -216,21 +216,23 @@ export default function AsideAprendiz() {
                             : "gap-3"
                     }`}
                 >
-                    <div className="w-9 h-9 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center shrink-0">
-                        <i className="bi bi-person-fill text-slate-300 text-base" />
-                    </div>
-
-                    {!collapsed && (
-                        <div className="min-w-0 flex-1">
-                            <p className="text-xs font-bold text-white truncate">
-                                Aprendiz
-                            </p>
-
-                            <p className="text-[10px] text-slate-500 truncate">
-                                aprendiz@sena.edu.co
-                            </p>
+                    <Link to="/aprendiz/perfil" className={`flex items-center min-w-0 ${collapsed ? "" : "gap-3 flex-1"}`} aria-label="Ver perfil">
+                        <div className="w-9 h-9 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center shrink-0">
+                            <i className="bi bi-person-fill text-slate-300 text-base" />
                         </div>
-                    )}
+
+                        {!collapsed && (
+                            <div className="min-w-0">
+                                <p className="text-xs font-bold text-white truncate">
+                                    Aprendiz
+                                </p>
+
+                                <p className="text-[10px] text-slate-500 truncate">
+                                    aprendiz@sena.edu.co
+                                </p>
+                            </div>
+                        )}
+                    </Link>
 
                     <button
                         onClick={cerrarSesion}
