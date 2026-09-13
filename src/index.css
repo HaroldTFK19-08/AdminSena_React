@@ -1,2 +1,22 @@
 @import "tailwindcss";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Nunito Sans";
+    src: url("./assets/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf")
+        format("truetype");
+    font-weight: 200 1000;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Nunito Sans";
+    src: url("./assets/fonts/NunitoSans-Italic-VariableFont_YTLC,opsz,wdth,wght.ttf")
+        format("truetype");
+    font-weight: 200 1000;
+    font-style: italic;
+}
+@theme {
+    --font-nunito: "Nunito Sans", sans-serif;
+}
