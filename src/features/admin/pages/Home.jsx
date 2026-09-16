@@ -1,10 +1,9 @@
 import { useState } from "react";
-import AsideAdmin from "../../../layouts/admin/Aside";
+import LayoutAdmin from "../../../layouts/admin/Layout";
 import BienvenidoAdmin from "../components/Bienvenido";
 import StatsAdmin from "../components/Estadisticas";
 import QuickActions from "../components/AccionesRapidas";
 import RecentActivity from "../components/ActividadesRecientes";
-import TopBar from "../../../layouts/admin/Header";
 import ModalActividades from "../../../modals/admin/ActividadesRecientes";
 
 function SectionHeader({ titulo, descripcion, accion }) {
@@ -27,40 +26,31 @@ function SectionHeader({ titulo, descripcion, accion }) {
 export default function HomeAdmin() {
     const [modal, setModal] = useState(false);
     return (
-        <div className="flex min-h-screen bg-[#F8FAFC]">
-            <AsideAdmin />
-            <main className="flex-1 min-w-0 overflow-y-auto">
-                <TopBar />
-                <div className="w-full max-w-[1600px] mx-auto px-5 py-6 sm:px-6 lg:px-8 lg:py-8">
-                    <div className="space-y-8">
-                        <BienvenidoAdmin />
-                        {/* Resumen general */}
-                        <section>
-                            <SectionHeader
-                                titulo="Resumen general"
-                                descripcion="Información general del sistema."
-                            />
-                            <StatsAdmin />
-                        </section>
-                        {/* Gestión */}
-                        <section>
-                            <SectionHeader
-                                titulo="Gestión"
-                                descripcion="Accesos directos y movimientos recientes del sistema."
-                            />
-                            <div className="grid grid-cols-1 2xl:grid-cols-[1.15fr_0.85fr] gap-6">
-                                <QuickActions />
-                                <RecentActivity abrirActividades={()=>setModal(true)}/>
-                            </div>
-                        </section>
-                        {/* Modal */}
-                        <ModalActividades
-                            abrir={modal}
-                            cerrar={() => setModal(false)}
-                        />
+        <LayoutAdmin titulo="Panel principal">
+            <div className="space-y-8">
+                <BienvenidoAdmin />
+                <section>
+                    <SectionHeader
+                        titulo="Resumen general"
+                        descripcion="Información general del sistema."
+                    />
+                    <StatsAdmin />
+                </section>
+                <section>
+                    <SectionHeader
+                        titulo="Gestión"
+                        descripcion="Accesos directos y movimientos recientes del sistema."
+                    />
+                    <div className="grid grid-cols-1 2xl:grid-cols-[1.15fr_0.85fr] gap-6">
+                        <QuickActions />
+                        <RecentActivity abrirActividades={()=>setModal(true)}/>
                     </div>
-                </div>
-            </main>
-        </div>
+                </section>
+                <ModalActividades
+                    abrir={modal}
+                    cerrar={() => setModal(false)}
+                />
+            </div>
+        </LayoutAdmin>
     );
 }

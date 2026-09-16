@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function TopBar() {
+export default function TopBar({ titulo = "Panel principal" }) {
     const navigate = useNavigate();
     return (
         <header className="sticky top-0 z-10 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200">
@@ -20,7 +20,7 @@ export default function TopBar() {
                             Admin
                         </p>
                         <h1 className="text-base font-bold text-slate-800 leading-none mt-0.5">
-                            Panel principal
+                            {titulo}
                         </h1>
                     </div>
                 </div>

@@ -6,8 +6,8 @@ const ENLACES_PRINCIPALES = [
     { to: "/admin", nombre: "Home", icono: "bi-grid-1x2-fill" },
     { to: "/admin/areas", nombre: "Áreas", icono: "bi-diagram-3-fill" },
     { to: "/admin/centros", nombre: "Centros de formación", icono: "bi-building-fill" },
-    { to: "/admin/computadores", nombre: "Computadores", icono: "bi-pc-display" },
-    { to: "/admin/cursos", nombre: "Cursos", icono: "bi-mortarboard-fill" },
+    { to: "/admin/equipos", nombre: "Equipos", icono: "bi-pc-display" },
+    { to: "/admin/programas", nombre: "Programas", icono: "bi-mortarboard-fill" },
     { to: "/admin/instructores", nombre: "Instructores", icono: "bi-person-workspace" },
     { to: "/admin/aprendices", nombre: "Aprendices", icono: "bi-people-fill" },
 ];
