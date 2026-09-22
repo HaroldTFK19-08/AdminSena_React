@@ -2,20 +2,17 @@ import { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/icons/auth/logoSena.svg";
 
-// --- CONFIGURACIÓN DEL MENÚ (Fácil de modificar) ---
+// --- CONFIGURACIÓN DEL MENÚ (Aprendiz) ---
 const ENLACES_PRINCIPALES = [
-    { to: "/admin", nombre: "Home", icono: "bi-grid-1x2-fill" },
-    { to: "/admin/areas", nombre: "Áreas", icono: "bi-diagram-3-fill" },
-    { to: "/admin/centros", nombre: "Centros de formación", icono: "bi-building-fill" },
-    { to: "/admin/equipos", nombre: "Equipos", icono: "bi-pc-display" },
-    { to: "/admin/programas", nombre: "Programas", icono: "bi-mortarboard-fill" },
-    { to: "/admin/instructores", nombre: "Instructores", icono: "bi-person-workspace" },
-    { to: "/admin/aprendices", nombre: "Aprendices", icono: "bi-people-fill" },
+    { to: "/aprendiz", nombre: "Inicio", icono: "bi-grid-1x2-fill" },
+    { to: "/aprendiz/cursos", nombre: "Cursos", icono: "bi-mortarboard-fill" },
+    { to: "/aprendiz/instructores", nombre: "Instructores", icono: "bi-person-video3" },
+    { to: "/aprendiz/computador", nombre: "Computador", icono: "bi-pc-display" },
 ];
 
 const ENLACES_SISTEMA = [
-    { to: "/admin/reportes", nombre: "Reportes", icono: "bi-bar-chart-fill" },
-    { to: "/admin/configuracion", nombre: "Configuración", icono: "bi-gear-fill" },
+    { to: "/aprendiz/reportes", nombre: "Reportes", icono: "bi-bar-chart-fill" },
+    { to: "/aprendiz/configuracion", nombre: "Configuración", icono: "bi-gear-fill" },
 ];
 
 // --- COMPONENTE AUXILIAR: Enlace del Menú ---
@@ -43,12 +40,11 @@ function SidebarLink({ to, nombre, icono, end, collapsed }) {
     );
 }
 
-// --- LAYOUT PRINCIPAL DE ADMIN ---
-export default function LayoutAdmin({ children, titulo = "Panel principal" }) {
+// --- LAYOUT PRINCIPAL DEL APRENDIZ ---
+export default function LayoutAprendiz({ children, titulo = "Panel del aprendiz" }) {
     const [collapsed, setCollapsed] = useState(false);
     const navigate = useNavigate();
 
-    // Función para cerrar sesión
     const cerrarSesion = () => {
         localStorage.removeItem("token");
         navigate("/login");
@@ -60,16 +56,15 @@ export default function LayoutAdmin({ children, titulo = "Panel principal" }) {
             {/* --- MENÚ LATERAL (Aside) --- */}
             <aside className={`h-screen sticky top-0 flex flex-col bg-[#071D2B] border-r border-white/[0.06] shrink-0 transition-all duration-300 ${collapsed ? "w-20" : "w-72"}`}>
                 
-                {/* Logo y Botón de Colapso */}
                 <div className={`flex items-center border-b border-white/[0.06] py-6 ${collapsed ? "flex-col gap-3 px-2" : "justify-between gap-2 px-5"}`}>
-                    <Link to="/admin" className={`flex items-center min-w-0 ${collapsed ? "" : "gap-3"}`}>
+                    <Link to="/aprendiz" className={`flex items-center min-w-0 ${collapsed ? "" : "gap-3"}`}>
                         <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center shrink-0">
                             <img src={Logo} alt="Logo SENA" className="w-7 h-7" />
                         </div>
                         {!collapsed && (
                             <div className="min-w-0">
                                 <h1 className="text-base font-black tracking-wide text-white uppercase leading-none truncate">ADMIN <span className="text-[#8AFD5D]">SENA</span></h1>
-                                <p className="mt-1.5 text-[10px] text-slate-500 font-semibold uppercase tracking-[0.14em]">Sistema administrativo</p>
+                                <p className="mt-1.5 text-[10px] text-slate-500 font-semibold uppercase tracking-[0.14em]">Panel del aprendiz</p>
                             </div>
                         )}
                     </Link>
@@ -78,17 +73,14 @@ export default function LayoutAdmin({ children, titulo = "Panel principal" }) {
                     </button>
                 </div>
 
-                {/* Navegación */}
                 <nav className="flex-1 overflow-y-auto px-3 py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {!collapsed && <p className="px-3 mb-3 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Principal</p>}
                     {collapsed && <div className="h-px bg-white/[0.06] mx-1 mb-3" />}
-                    
                     <ul className="space-y-1">
                         {ENLACES_PRINCIPALES.map(enlace => (
-                            <SidebarLink key={enlace.to} {...enlace} end={enlace.to === "/admin"} collapsed={collapsed} />
+                            <SidebarLink key={enlace.to} {...enlace} end={enlace.to === "/aprendiz"} collapsed={collapsed} />
                         ))}
                     </ul>
-
                     <div className="mt-8">
                         {!collapsed && <p className="px-3 mb-3 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Sistema</p>}
                         {collapsed && <div className="h-px bg-white/[0.06] mx-1 mb-3" />}
@@ -100,17 +92,16 @@ export default function LayoutAdmin({ children, titulo = "Panel principal" }) {
                     </div>
                 </nav>
 
-                {/* Perfil y Salida */}
                 <div className="px-3 pb-4 border-t border-white/[0.06] pt-3">
                     <div className={`flex items-center rounded-xl px-2 py-2 hover:bg-white/[0.04] transition-colors ${collapsed ? "flex-col gap-2" : "gap-3"}`}>
-                        <Link to="/admin/perfil" className={`flex items-center min-w-0 ${collapsed ? "" : "gap-3 flex-1"}`}>
+                        <Link to="/aprendiz/perfil" className={`flex items-center min-w-0 ${collapsed ? "" : "gap-3 flex-1"}`}>
                             <div className="w-9 h-9 rounded-full bg-white/[0.06] border border-white/[0.08] flex items-center justify-center shrink-0">
                                 <i className="bi bi-person-fill text-slate-300 text-base" />
                             </div>
                             {!collapsed && (
                                 <div className="min-w-0">
-                                    <p className="text-xs font-bold text-white truncate">Administrador</p>
-                                    <p className="text-[10px] text-slate-500 truncate">admin@sena.edu.co</p>
+                                    <p className="text-xs font-bold text-white truncate">Aprendiz</p>
+                                    <p className="text-[10px] text-slate-500 truncate">aprendiz@sena.edu.co</p>
                                 </div>
                             )}
                         </Link>
@@ -123,15 +114,14 @@ export default function LayoutAdmin({ children, titulo = "Panel principal" }) {
 
             {/* --- ÁREA DE CONTENIDO --- */}
             <main className="flex-1 min-w-0 overflow-y-auto">
-                {/* BARRA SUPERIOR (TopBar) */}
                 <header className="sticky top-0 z-10 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200">
                     <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                            <button onClick={() => navigate(-1)} className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-all hover:bg-[#39A900]/10 hover:text-[#39A900] border border-gray-300">
-                                <i className="bi bi-arrow-left text-lg"></i>
+                        <div className="flex items-center space-x-5">
+                            <button onClick={() => navigate(-1)} className="group flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm transition-all hover:bg-slate-50">
+                                <i className="bi bi-arrow-left text-base group-hover:-translate-x-1 transition-transform"></i>
                             </button>
-                            <div className="ml-2">
-                                <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Admin</p>
+                            <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Aprendiz</p>
                                 <h1 className="text-base font-bold text-slate-800 leading-none mt-0.5">{titulo}</h1>
                             </div>
                         </div>
@@ -143,8 +133,6 @@ export default function LayoutAdmin({ children, titulo = "Panel principal" }) {
                         </div>
                     </div>
                 </header>
-
-                {/* Espacio donde se renderizan las páginas */}
                 <div className="w-full max-w-[1600px] mx-auto px-5 py-6 sm:px-6 lg:px-8 lg:py-8">
                     {children}
                 </div>

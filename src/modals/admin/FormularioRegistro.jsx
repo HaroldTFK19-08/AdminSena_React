@@ -10,6 +10,7 @@ export default function FormularioRegistro({
     guardar,
     cerrar,
 }) {
+    // Si el modal no está marcado como abierto, no renderizamos nada
     if (!abierto) return null;
 
     return (
@@ -22,6 +23,7 @@ export default function FormularioRegistro({
                 className="w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl"
                 onClick={(evento) => evento.stopPropagation()}
             >
+                {/* --- ENCABEZADO DEL FORMULARIO --- */}
                 <div className="flex items-center justify-between bg-[#071D2B] px-6 py-5">
                     <div>
                         <p className="text-xs font-semibold uppercase tracking-wider text-[#8AFD5D]">
@@ -33,15 +35,17 @@ export default function FormularioRegistro({
                     </div>
                     <button
                         type="button"
-                        aria-label="Cerrar formulario"
                         onClick={cerrar}
                         className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-300 transition hover:bg-white/10 hover:text-white"
                     >
                         <i className="bi bi-x-lg" />
                     </button>
                 </div>
+
+                {/* --- CUERPO DEL FORMULARIO (Campos Dinámicos) --- */}
                 <div className="grid gap-4 px-6 py-6 sm:grid-cols-2">
                     {columnas.map((columna) => {
+                        // Si la columna es de tipo 'estado', creamos una lista de opciones basadas en los registros existentes
                         const opcionesEstado = columna.tipo === "estado"
                             ? [...new Set(registros.map((registro) => registro[columna.clave]).filter(Boolean))]
                             : [];
@@ -74,6 +78,8 @@ export default function FormularioRegistro({
                         );
                     })}
                 </div>
+
+                {/* --- PIE DEL FORMULARIO (Botones de Acción) --- */}
                 <div className="flex justify-end gap-3 border-t border-slate-100 px-6 py-4">
                     <button
                         type="button"

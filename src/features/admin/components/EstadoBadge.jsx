@@ -1,3 +1,7 @@
+/**
+ * Mapeo de colores según el valor del estado.
+ * Permite una identificación visual rápida de la situación del registro.
+ */
 const ESTILOS_ESTADO = {
     Activo: "bg-emerald-50 text-emerald-700",
     "En formación": "bg-emerald-50 text-emerald-700",
@@ -8,6 +12,13 @@ const ESTILOS_ESTADO = {
     Finalizado: "bg-slate-100 text-slate-600",
 };
 
+/**
+ * Componente de Etiqueta de Estado (Badge)
+ * Renderiza un pequeño indicador visual con color basado en el texto del estado.
+ * 
+ * @param {Object} props
+ * @param {string} props.valor - Texto del estado (debe coincidir con las claves de ESTILOS_ESTADO)
+ */
 export default function EstadoBadge({ valor }) {
     const estilo = ESTILOS_ESTADO[valor] || "bg-slate-100 text-slate-600";
 

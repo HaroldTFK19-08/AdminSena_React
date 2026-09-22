@@ -6,6 +6,11 @@ import StatsInstructor from "../components/Estadisticas";
 import QuickActionsInstructor from "../components/AccesoRapido";
 import RecentActivityInstructor from "../components/ActividadesRecientes";
 
+/**
+ * Página Principal del Instructor (Dashboard)
+ * Organiza la vista general del instructor incluyendo estadísticas,
+ * accesos rápidos y actividades recientes.
+ */
 export default function HomeInstructor() {
     return (
         <div className="h-screen bg-slate-50 flex overflow-hidden">

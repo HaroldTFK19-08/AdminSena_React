@@ -6,6 +6,10 @@ import QuickActions from "../components/AccionesRapidas";
 import RecentActivity from "../components/ActividadesRecientes";
 import ModalActividades from "../../../modals/admin/ActividadesRecientes";
 
+/**
+ * Componente auxiliar para encabezados de sección.
+ * Proporciona una estructura consistente para títulos y descripciones dentro del panel.
+ */
 function SectionHeader({ titulo, descripcion, accion }) {
     return (
         <div className="flex items-center justify-between gap-4 mb-4">
@@ -23,12 +27,18 @@ function SectionHeader({ titulo, descripcion, accion }) {
         </div>
     );
 }
+
+/**
+ * Página Principal del Administrador (Dashboard)
+ * Centraliza el resumen de estadísticas, accesos rápidos y actividad reciente.
+ */
 export default function HomeAdmin() {
     const [modal, setModal] = useState(false);
     return (
         <LayoutAdmin titulo="Panel principal">
             <div className="space-y-8">
                 <BienvenidoAdmin />
+                
                 <section>
                     <SectionHeader
                         titulo="Resumen general"
@@ -36,6 +46,7 @@ export default function HomeAdmin() {
                     />
                     <StatsAdmin />
                 </section>
+                
                 <section>
                     <SectionHeader
                         titulo="Gestión"
@@ -46,6 +57,7 @@ export default function HomeAdmin() {
                         <RecentActivity abrirActividades={()=>setModal(true)}/>
                     </div>
                 </section>
+                
                 <ModalActividades
                     abrir={modal}
                     cerrar={() => setModal(false)}

@@ -1,63 +1,48 @@
 import { useForm } from "react-hook-form";
 
+/**
+ * Hook para la gestión del formulario de perfil del Instructor.
+ * Implementa validaciones estrictas para asegurar que los datos del instructor
+ * (área, centro, vocación) sean coherentes y válidos.
+ */
 export default function UseFormPerfilInstructor(){
-    const {register,handleSubmit,formState: { errors },} = useForm();
-    const validarCampos={
-        area:{
-            required: "El area es obligatorio",
-            pattern:{
-                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
-                message: "Solo se permiten letras"
-            }
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    /**
+     * Reglas de validación.
+     * Se utilizan expresiones regulares para evitar caracteres numéricos en campos de texto.
+     */
+    const validarCampos = {
+        area: { 
+            required: "Obligatorio", 
+            pattern: { value: /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/, message: "Solo letras" } 
         },
-        centro:{
-            required: "El centro de formacion es obligatorio",
-            pattern:{
-                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
-                message: "Solo se permiten letras"
-            }
+        centro: { 
+            required: "Obligatorio", 
+            pattern: { value: /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/, message: "Solo letras" } 
         },
-        vocacion:{
-            required: "La vocacion es obligatoria",
-            pattern:{
-                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
-                message: "Solo se permiten letras"
-            }
+        vocacion: { 
+            required: "Obligatorio", 
+            pattern: { value: /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/, message: "Solo letras" } 
         },
         foto: {
             required: "La foto de perfil es obligatoria",
             validate: {
                 formato: (files) => {
                     const archivo = files?.[0];
-                    if (!archivo) {
-                        return "La foto de perfil es obligatoria";
-                    }
-                    const formatosPermitidos = [
-                        "image/jpeg",
-                        "image/png",
-                    ];
-                    return (
-                        formatosPermitidos.includes(archivo.type) ||
-                        "Solo se permiten imágenes JPG o PNG"
-                    );
+                    return (archivo?.type === "image/jpeg" || archivo?.type === "image/png") || "Solo JPG o PNG";
                 },
                 tamaño: (files) => {
                     const archivo = files?.[0];
-                    if (!archivo) {
-                        return true;
-                    }
-                    return (
-                        archivo.size <= 2 * 1024 * 1024 ||
-                        "La imagen no puede superar los 2 MB"
-                    );
+                    return (!archivo || archivo.size <= 2 * 1024 * 1024) || "Máximo 2MB";
                 },
             },
         }
-    }
-    return {
-        register,
-        handleSubmit,
-        errors,
-        validarCampos,
     };
+
+    return { register, handleSubmit, errors, validarCampos };
 }

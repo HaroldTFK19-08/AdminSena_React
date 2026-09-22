@@ -2,6 +2,11 @@ import LayoutAdmin from "../../../layouts/admin/Layout";
 import ListaGestion from "../components/ListaGestion";
 import { instructores } from "../../../data/admin/Instructores";
 
+/**
+ * Página de Gestión de Instructores
+ * Proporciona al administrador la capacidad de administrar el personal instructor,
+ * permitiendo el registro de nuevos instructores y la búsqueda avanzada.
+ */
 export default function InstructoresAdmin() {
     return (
         <LayoutAdmin titulo="Instructores">

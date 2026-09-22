@@ -9,7 +9,7 @@ export default function IndexComputadores() {
                 titulo="Equipos"
                 descripcion="Controla el inventario de equipos y su asignación por ambiente."
                 icono="bi-pc-display"
-                botonNuevo="Registrar computador"
+                botonNuevo="Registrar equipo"
                 placeholderBusqueda="Buscar por serial, marca o ambiente"
                 buscarPor={["serial", "marca", "ambiente", "centro"]}
                 columnas={[

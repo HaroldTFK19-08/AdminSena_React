@@ -12,7 +12,6 @@ export default function FooterCompletarPerfil() {
                             alt="Logo SENA"
                             className="w-7 h-7"
                         />
-
                         <span className="text-xs font-bold text-white uppercase tracking-wider">
                             ADMIN{" "}
                             <span className="text-[#8AFD5D]">
@@ -20,11 +19,9 @@ export default function FooterCompletarPerfil() {
                             </span>
                         </span>
                     </div>
-
                     <p className="text-[11px] text-slate-500 text-center">
                         Completa tu información para continuar
                     </p>
-
                     <p className="text-[11px] text-slate-500">
                         © {new Date().getFullYear()} ADMIN SENA
                     </p>

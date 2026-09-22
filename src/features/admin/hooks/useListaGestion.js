@@ -1,5 +1,15 @@
 import { useMemo, useState } from "react";
 
+/**
+ * Hook genérico para gestionar tablas de datos (CRUD local).
+ * Permite filtrar registros, abrir formularios de creación/edición y eliminar elementos.
+ * 
+ * @param {Object} params - Configuración de la lista
+ * @param {Array} params.filas - Datos iniciales de la tabla
+ * @param {Array} params.columnas - Definición de columnas (clave y etiqueta)
+ * @param {Array} params.buscarPor - Campos sobre los cuales se realizará la búsqueda
+ * @param {string} params.titulo - Nombre de la entidad (usado en mensajes de confirmación)
+ */
 export default function useListaGestion({ filas, columnas, buscarPor, titulo }) {
     const [busqueda, setBusqueda] = useState("");
     const [registros, setRegistros] = useState(filas);
@@ -8,6 +18,10 @@ export default function useListaGestion({ filas, columnas, buscarPor, titulo }) 
     const [datosFormulario, setDatosFormulario] = useState({});
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
+    /**
+     * Registros filtrados basados en la entrada de búsqueda.
+     * Utiliza useMemo para evitar recalcular la lista en cada renderizado.
+     */
     const filtradas = useMemo(() => {
         const consulta = busqueda.trim().toLowerCase();
         if (!consulta) return registros;
@@ -19,6 +33,9 @@ export default function useListaGestion({ filas, columnas, buscarPor, titulo }) 
         );
     }, [busqueda, registros, buscarPor]);
 
+    /**
+     * Inicializa el formulario para crear un nuevo registro vacío.
+     */
     const abrirRegistro = () => {
         setFilaEditada(null);
         setDatosFormulario(
@@ -27,6 +44,9 @@ export default function useListaGestion({ filas, columnas, buscarPor, titulo }) 
         setMostrarFormulario(true);
     };
 
+    /**
+     * Carga los datos de un registro existente en el formulario para su edición.
+     */
     const abrirEdicion = (fila) => {
         setFilaSeleccionada(null);
         setFilaEditada(fila);
@@ -34,11 +54,18 @@ export default function useListaGestion({ filas, columnas, buscarPor, titulo }) 
         setMostrarFormulario(true);
     };
 
+    /**
+     * Cierra el modal del formulario y limpia el estado de edición.
+     */
     const cerrarFormulario = () => {
         setMostrarFormulario(false);
         setFilaEditada(null);
     };
 
+    /**
+     * Guarda los cambios del formulario.
+     * Si hay una fila editada, actualiza el registro; de lo contrario, crea uno nuevo.
+     */
     const guardarRegistro = (evento) => {
         evento.preventDefault();
 
@@ -61,6 +88,9 @@ export default function useListaGestion({ filas, columnas, buscarPor, titulo }) 
         cerrarFormulario();
     };
 
+    /**
+     * Elimina un registro previa confirmación del usuario.
+     */
     const eliminarRegistro = (fila) => {
         const confirmado = window.confirm(
             `¿Deseas eliminar este registro de ${titulo.toLowerCase()}?`
