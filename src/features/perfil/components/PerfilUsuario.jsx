@@ -1,3 +1,8 @@
+
+/**
+ * Componente Genérico de Perfil de Usuario
+ * Renderiza una vista de perfil adaptable según el rol (Admin, Instructor, Aprendiz).
+ */
 export default function PerfilUsuario({
     rol,
     nombre,
@@ -37,7 +42,6 @@ export default function PerfilUsuario({
                                 {descripcion}
                             </p>
                         </div>
-                        {/* Botón para abrir modal */}
                         <button
                             type="button"
                             onClick={modal}

@@ -1,95 +1,59 @@
-const actividades = [
-    {
-        texto: "Nuevo aprendiz registrado",
-        usuario: "Juan Pérez",
-        tiempo: "Hace 10 minutos",
-        icono: "bi-person-plus-fill",
-    },
-    {
-        texto: "Nuevo curso creado",
-        usuario: "ADSO - Ficha 2854671",
-        tiempo: "Hace 35 minutos",
-        icono: "bi-mortarboard-fill",
-    },
-    {
-        texto: "Centro de formación actualizado",
-        usuario: "Centro Popayán",
-        tiempo: "Hace 1 hora",
-        icono: "bi-building-fill",
-    },
-    {
-        texto: "Reporte generado",
-        usuario: "Inventario general",
-        tiempo: "Hace 2 horas",
-        icono: "bi-file-earmark-bar-graph-fill",
-    },
-];
+import React from "react";
+import { actividades } from "../../../data/admin/Actividades";
 
 export default function RecentActivity({ abrirActividades }) {
-
     return (
-        <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-
+        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
             {/* Encabezado */}
-            <div className="flex items-center justify-between mb-5">
-
-                <div>
-                    <h2 className="text-lg font-bold text-[#071D2B]">
-                        Actividad reciente
-                    </h2>
-
-                    <p className="mt-1 text-sm text-slate-500">
-                        Últimos movimientos del sistema.
-                    </p>
+            <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <i className="bi bi-clock-history text-lg" />
+                    </div>
+                    <div>
+                        <h2 className="text-lg font-bold text-slate-800 leading-none">Actividad Reciente</h2>
+                        <p className="text-xs text-slate-400 mt-1">Movimientos últimos del sistema</p>
+                    </div>
                 </div>
-
-                <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center">
-                    <i className="bi bi-clock-history text-slate-400" />
-                </div>
+                
+                <button 
+                    onClick={abrirActividades}
+                    className="text-xs font-bold text-[#8AFD5D] hover:text-emerald-600 transition-colors flex items-center gap-1 group"
+                >
+                    Ver todo 
+                    <i className="bi bi-arrow-right transition-transform group-hover:translate-x-1" />
+                </button>
             </div>
-            {/* Actividades */}
-            <div className="relative">
+
+            {/* Lista de Actividades usando la DATA real */}
+            <div className="space-y-4">
                 {actividades.map((actividad, index) => (
                     <div
-                        key={index}
-                        className="relative flex gap-4 pb-5 last:pb-0"
+                        key={actividad.id || index}
+                        className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all duration-200 group border border-transparent hover:border-slate-200"
                     >
-                        {/* Línea del timeline */}
-                        {index !== actividades.length - 1 && (
-                            <span className="absolute left-5 top-10 bottom-0 w-px bg-slate-100" />
-                        )}                        {/* Icono */}
-                        <div className="relative w-10 h-10 shrink-0 rounded-xl bg-[#0F5B3C]/[0.08] flex items-center justify-center">
-                            <i
-                                className={`bi ${actividad.icono} text-[#0F5B3C] text-sm`}
-                            />
-                        </div>
-                        {/* Información */}
-                        <div className="min-w-0 flex-1 flex items-start justify-between gap-3">
-                            <div className="min-w-0">
-                                <p className="text-sm font-semibold text-[#071D2B]">
-                                    {actividad.texto}
-                                </p>
-                                <p className="text-xs text-slate-500 truncate">
-                                    {actividad.usuario}
-                                </p>
+                        <div className="flex items-center gap-4">
+                            {/* Icono Dinámico según la data */}
+                            <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-400 group-hover:text-[#8AFD5D] transition-colors border border-slate-100">
+                                <i className={`bi ${actividad.icono}`} />
                             </div>
-                            <span className="text-[10px] text-slate-400 whitespace-nowrap pt-0.5">
-                                {actividad.tiempo}
-                            </span>
+                            
+                            <div className="flex flex-col">
+                                <span className="text-sm font-bold text-slate-700 group-hover:text-slate-900 transition-colors">
+                                    {actividad.texto}
+                                </span>
+                                <span className="text-xs text-slate-400 flex items-center gap-1">
+                                    <i className="bi bi-person text-[10px]" /> {actividad.usuario}
+                                </span>
+                            </div>
                         </div>
+                        
+                        <span className="text-[11px] font-medium text-slate-400 bg-white px-2 py-1 rounded-lg border border-slate-100">
+                            {actividad.tiempo}
+                        </span>
                     </div>
                 ))}
             </div>
-            {/* Ver historial */}
-            <button
-                type="button"
-                onClick={abrirActividades}
-                className="mt-2 w-full flex items-center justify-center gap-1.5 text-xs font-semibold text-[#0F5B3C] hover:text-[#0C7A45] transition-colors py-2"
-            >
-                Ver todo el historial
-                <i className="bi bi-arrow-right text-[10px]" />
-            </button>
         </div>
     );
 }
-

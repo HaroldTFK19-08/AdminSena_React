@@ -5,8 +5,7 @@ import Logo from "../../../assets/icons/auth/logoSena.svg";
 
 /**
  * Página de Inicio de Sesión (Login)
- * Gestiona la autenticación de usuarios (Admin, Instructor, Aprendiz)
- * y redirige al flujo de completado de perfil según el rol.
+ * Gestiona la autenticación de usuarios y redirige según el rol.
  */
 export default function Login() {
     const navegacion = useNavigate();
@@ -14,21 +13,20 @@ export default function Login() {
     const [errorCredenciales, setErrorCredenciales] = useState(null);
     const [submitting, setSubmitting] = useState(false);
 
-    // Hook personalizado para manejar la validación del formulario de login
     const { register, handleSubmit, setValue, errors, validarCampos } = UseFormLogin();
 
     /**
-     * Maneja el envío del formulario y simula la autenticación
-     * @param {Object} data - Datos del formulario (correo, password)
+     * Maneja la validación de credenciales y la redirección.
      */
     const manejarLogin = (data) => {
         setErrorCredenciales(null);
         setSubmitting(true);
 
-        // Simulación de respuesta de API con delay
+        // Simulación de validación de credenciales
         setTimeout(() => {
+            // CASO ADMINISTRADOR: Redirección directa al Home de Admin
             if (data.correo === "admin123@sena.edu.co" && data.password === "admin123") {
-                navegacion("/admin/completarPerfil");
+                navegacion("/admin"); 
             } else if (data.correo === "instructor@sena.edu.co" && data.password === "instructor123") {
                 navegacion("/instructor/completarPerfil");
             } else if (data.correo === "aprendiz@sena.edu.co" && data.password === "aprendiz123") {
@@ -39,9 +37,7 @@ export default function Login() {
             }
         }, 300);
     };
-    /**
-     * Llena automáticamente el formulario para facilitar pruebas rápidas
-     */
+
     const llenarPrueba = (correo, password) => {
         setValue("correo", correo, { shouldValidate: true });
         setValue("password", password, { shouldValidate: true });

@@ -1,6 +1,35 @@
-export const cursos = [
-    { id: 1, ficha: "2874451", nombre: "Análisis y desarrollo de software", instructor: "Pedro López", aprendices: 28, estado: "Activo" },
-    { id: 2, ficha: "2874502", nombre: "Diseño de medios gráficos", instructor: "Laura Méndez", aprendices: 24, estado: "Activo" },
-    { id: 3, ficha: "2651103", nombre: "Gestión administrativa", instructor: "Andrés Soto", aprendices: 30, estado: "Activo" },
-    { id: 4, ficha: "2512099", nombre: "Mantenimiento de equipos", instructor: "Diana Cruz", aprendices: 18, estado: "Finalizado" },
+// Data estática de las competencias
+export const competencias = [
+    { 
+        id: 1, 
+        codigo: "220501096", 
+        nombre: "Desarrollar la solución de software de acuerdo con el diseño y requerimientos", 
+        programa: "Análisis y Desarrollo de Software (ADSO)", 
+        horas: 240, 
+        estado: "Activa" 
+    },
+    { 
+        id: 2, 
+        codigo: "220501097", 
+        nombre: "Implantar la solución de software de acuerdo con los requisitos del cliente", 
+        programa: "Análisis y Desarrollo de Software (ADSO)", 
+        horas: 120, 
+        estado: "Activa" 
+    },
+    { 
+        id: 3, 
+        codigo: "210601020", 
+        nombre: "Atender clientes de acuerdo con el procedimiento de servicio y normativa", 
+        programa: "Gestión Empresarial", 
+        horas: 90, 
+        estado: "Inactiva" 
+    },
+    { 
+        id: 4, 
+        codigo: "220501001", 
+        nombre: "Mantenimiento de equipos de cómputo según procedimiento técnico", 
+        programa: "Sistemas de Información", 
+        horas: 180, 
+        estado: "Activa" 
+    }
 ];

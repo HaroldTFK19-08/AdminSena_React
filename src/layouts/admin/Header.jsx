@@ -1,39 +1,33 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function TopBar({ titulo = "Panel principal" }) {
+export default function HeaderAdmin({ titulo }) {
     const navigate = useNavigate();
+
     return (
-        <header className="sticky top-0 z-10 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200">
-            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                <div className="flex justifi-center items-center space-x-2">
-                    <div>
-                        <button
-                            type="button"
-                            onClick={() => navigate(-1)}
-                            className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 hover:bg-[#39A900]/10 hover:text-[#39A900] active:scale-95 border border-gray-300"
-                        >
-                            <i className="bi bi-arrow-left text-lg"></i>
-                        </button>
-                    </div>
-                    <div className="ml-2">
-                        <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                            Admin
-                        </p>
-                        <h1 className="text-base font-bold text-slate-800 leading-none mt-0.5">
-                            {titulo}
-                        </h1>
-                    </div>
+        <header className="h-16 bg-white border-b border-slate-100 px-6 flex items-center justify-between sticky top-0 z-10 shadow-sm">
+            <div className="flex items-center gap-4">
+                <button 
+                    onClick={() => navigate(-1)} 
+                    className="p-2 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                    <i className="bi bi-arrow-left" />
+                </button>
+                <div className="h-6 w-px bg-slate-200 mx-2" />
+                <h1 className="text-lg font-black text-slate-800 tracking-tight">{titulo}</h1>
+            </div>
+
+            <div className="flex items-center gap-4">
+                <div className="text-right hidden sm:block">
+                    <p className="text-sm font-bold text-slate-700 leading-none">Administrador</p>
+                    <p className="text-[11px] text-slate-400 font-medium mt-1">admin@sena.edu.co</p>
                 </div>
-                <div className="flex items-center gap-2">
-                    <button
-                        type="button"
-                        aria-label="Notificaciones"
-                        className="relative w-9 h-9 rounded-lg border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:text-emerald-600 hover:border-emerald-300 transition-colors"
-                    >
-                        <i className="bi bi-bell text-sm" />
-                        <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-white" />
-                    </button>
-                </div>
+                <Link 
+                    to="/admin/perfil" 
+                    className="group flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 border-2 border-white shadow-sm ring-1 ring-slate-200 text-slate-600 font-bold transition-all duration-200 hover:ring-[#8AFD5D] hover:bg-emerald-50 hover:text-emerald-600"
+                    title="Mi Perfil"
+                >
+                    AD
+                </Link>
             </div>
         </header>
     );
