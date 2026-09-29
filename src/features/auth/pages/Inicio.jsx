@@ -1,9 +1,9 @@
-import Header from "../components/inicio/Header"
-import Seccion1 from "../components/inicio/Seccion1"
-import Seccion2 from "../components/inicio/Seccion2"
-import Seccion3 from "../components/inicio/Seccion3"
-import Seccion4 from "../components/inicio/Seccion4"
-import Footer from "../components/inicio/Footer"
+import Header from "../components/landing/Header"
+import Seccion1 from "../components/landing/Seccion1"
+import Seccion2 from "../components/landing/Seccion2"
+import Seccion3 from "../components/landing/Seccion3"
+import Seccion4 from "../components/landing/Seccion4"
+import Footer from "../components/landing/Footer"
 
 export default function Inicio(){
     return(
