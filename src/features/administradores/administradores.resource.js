@@ -2,7 +2,6 @@ import { defineResource } from "../../shared/resources/registry";
 import { ENDPOINTS } from "../../shared/api/endpoints";
 import { ROLES } from "../../shared/constants/enums";
 import { personColumns, personDisplay } from "../../shared/resources/helpers";
-
 /** Tabla `admins` (1:1 con users). */
 export const administradoresResource = defineResource({
     key: "admins",

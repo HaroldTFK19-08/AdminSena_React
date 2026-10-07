@@ -16,11 +16,12 @@ import { useReferenceData } from "../../hooks/useReferenceData";
  *
  * Props opcionales:
  *  - readOnly:    oculta crear/editar/eliminar
+ *  - canEdit:     false para ocultar editar
  *  - canDelete:   false para ocultar eliminar
  *  - headerExtra: acciones adicionales en el encabezado
  *  - children:    contenido extra debajo de la tabla
  */
-export default function CrudPage({ resource, readOnly = false, canCreate = true, canDelete = true, headerExtra, children }) {
+export default function CrudPage({ resource, readOnly = false, canCreate = true, canEdit = true, canDelete = true, headerExtra, children }) {
     const toast = useToast();
     const { items, loading, error, reload, create, update, remove } = useResource(resource);
     const [refVersion, setRefVersion] = useState(0);
@@ -84,7 +85,7 @@ export default function CrudPage({ resource, readOnly = false, canCreate = true,
                 error={error}
                 onRetry={reload}
                 onView={(row) => open("detail", row)}
-                onEdit={readOnly ? undefined : (row) => open("form", row)}
+                onEdit={readOnly || !canEdit ? undefined : (row) => open("form", row)}
                 onDelete={readOnly || !canDelete ? undefined : (row) => open("delete", row)}
             />
 
@@ -96,7 +97,7 @@ export default function CrudPage({ resource, readOnly = false, canCreate = true,
                 record={modal.record}
                 lookup={refs.lookup}
                 onClose={close}
-                onEdit={readOnly ? undefined : (row) => open("form", row)}
+                onEdit={readOnly || !canEdit ? undefined : (row) => open("form", row)}
             />
 
             <EntityFormModal

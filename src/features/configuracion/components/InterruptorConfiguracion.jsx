@@ -8,10 +8,13 @@ export default function InterruptorConfiguracion({ etiqueta, descripcion, activo
             <button
                 type="button"
                 onClick={onCambiar}
-                className={`w-12 h-7 rounded-full relative transition-colors shrink-0 ${activo ? "bg-[#8AFD5D]" : "bg-slate-200"}`}
+                role="switch"
+                aria-checked={activo}
+                aria-label={etiqueta}
+                className={`relative h-7 w-12 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#0E6B54]/20 ${activo ? "bg-[#8AFD5D]" : "bg-slate-200"}`}
             >
                 <span
-                    className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow-md transition-transform ${activo ? "translate-x-6" : "translate-x-1"}`}
+                    className={`absolute left-1 top-1 h-5 w-5 rounded-full bg-white shadow-md transition-transform ${activo ? "translate-x-5" : "translate-x-0"}`}
                 />
             </button>
         </div>

@@ -6,5 +6,5 @@ import { usuariosResource } from "../usuarios.resource";
  * comportamiento propio (filtros, acciones extra, vistas especiales), agréguelo aquí.
  */
 export default function UsuariosPage() {
-    return <CrudPage resource={usuariosResource} />;
+    return <CrudPage resource={usuariosResource} canEdit={false} />;
 }
