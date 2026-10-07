@@ -3,20 +3,17 @@
  */
 export default function PageHeader({ icon, title, description, actions }) {
     return (
-        <section className="bg-sena-navy text-white p-6 sm:p-8 rounded-3xl relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="absolute -right-16 -bottom-20 w-72 h-72 rounded-full bg-sena-green/10 blur-3xl pointer-events-none" />
-            <div className="relative flex items-start gap-4 max-w-2xl">
-                {icon && (
-                    <div className="hidden sm:flex w-12 h-12 shrink-0 rounded-2xl bg-white/10 border border-white/10 text-sena-green items-center justify-center text-xl">
-                        <i className={`bi ${icon}`} />
-                    </div>
-                )}
-                <div className="space-y-1.5">
-                    <h1 className="text-2xl sm:text-3xl font-black tracking-tight">{title}</h1>
-                    {description && <p className="text-slate-300 text-sm leading-relaxed">{description}</p>}
+        <section className="relative isolate flex flex-col justify-between gap-6 overflow-hidden rounded-[30px] border border-[#D6E6EA] bg-gradient-to-r from-[#DFF2EE] via-[#EAF6F4] to-[#E4EEF6] p-6 shadow-[0_20px_45px_rgba(15,40,53,0.08)] md:p-8 lg:flex-row lg:items-center">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(138,253,93,0.18),_transparent_35%)]" />
+            <div className="relative z-10 flex max-w-3xl items-start gap-4">
+                {icon && <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#D8E6EB] bg-white/70 text-xl text-[#0E6B54] shadow-sm sm:flex"><i className={`bi ${icon}`} /></div>}
+                <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1B5E6A]">Gestión institucional</p>
+                    <h1 className="mt-3 text-3xl font-black leading-tight text-[#0A2334] md:text-4xl">{title}</h1>
+                    {description && <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#3B5D6E] md:text-base">{description}</p>}
                 </div>
             </div>
-            {actions && <div className="relative flex flex-wrap gap-3">{actions}</div>}
+            {actions && <div className="relative z-10 flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row [&>button]:shadow-lg">{actions}</div>}
         </section>
     );
 }

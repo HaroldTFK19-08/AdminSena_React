@@ -22,7 +22,7 @@ export const usuariosResource = defineResource({
         { name: "identificacion", label: "Identificación", required: true, maxLength: 255, table: true, mono: true },
         { name: "email", label: "Correo electrónico", type: "email", required: true, maxLength: 255, table: true },
         { name: "rol", label: "Rol", type: "select", options: ROLES_OPCIONES, badge: true, required: true, table: true },
-        { name: "foto_perfil", label: "Foto de perfil (URL)", type: "url", maxLength: 255, wide: true },
+        { name: "foto_perfil", label: "Foto de perfil", type: "file", accept: "image/png,image/jpeg,image/webp", help: "PNG, JPG o WEBP; máximo 2 MB.", wide: true },
         {
             name: "password",
             label: "Contraseña",
@@ -31,6 +31,13 @@ export const usuariosResource = defineResource({
             minLength: 8,
             help: "Mínimo 8 caracteres.",
             helpEdit: "Déjala vacía para conservar la actual.",
+        },
+        {
+            name: "password_confirmation",
+            label: "Confirmar contraseña",
+            type: "password",
+            required: "create",
+            minLength: 8,
         },
     ],
     relations: [],

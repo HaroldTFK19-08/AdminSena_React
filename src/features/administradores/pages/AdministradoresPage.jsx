@@ -6,5 +6,5 @@ import { administradoresResource } from "../administradores.resource";
  * comportamiento propio (filtros, acciones extra, vistas especiales), agréguelo aquí.
  */
 export default function AdministradoresPage() {
-    return <CrudPage resource={administradoresResource} />;
+    return <CrudPage resource={administradoresResource} canCreate={false} />;
 }

@@ -13,7 +13,7 @@ export const ofertasResource = defineResource({
     display: (row, lookup) => `${labelFor("programs", row.program_id, lookup)} · ${formatFecha(row.fecha_convocatoria)}`,
     fields: [
         { name: "program_id", label: "Programa", type: "reference", ref: "programs", required: true, table: true, wide: true },
-        { name: "admin_id", label: "Publicada por", type: "reference", ref: "admins", required: true },
+        { name: "admin_id", label: "Publicada por", form: false, type: "reference", ref: "admins", table: true },
         { name: "capacidad", label: "Cupos", type: "number", min: 1, required: true, table: true },
         { name: "fecha_lanzamiento", label: "Lanzamiento", type: "date", required: true },
         { name: "fecha_convocatoria", label: "Inicio de convocatoria", type: "date", required: true, table: true },
@@ -21,7 +21,8 @@ export const ofertasResource = defineResource({
         { name: "fecha_primera_prueba", label: "Primera prueba", type: "date" },
         { name: "fecha_segunda_prueba", label: "Segunda prueba", type: "date" },
         { name: "fecha_seleccionados", label: "Publicación de seleccionados", type: "date" },
-        { name: "imagen", label: "Imagen (URL)", type: "url", maxLength: 255, wide: true },
+        { name: "imagen", label: "Imagen", type: "file", accept: "image/png,image/jpeg,image/webp", wide: true },
+        { name: "publicada", label: "Publicada", type: "checkbox", defaultValue: false, table: true, badge: true },
     ],
     relations: [
         {

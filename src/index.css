@@ -23,28 +23,96 @@
     --font-nunito: "Nunito Sans", sans-serif;
 
     --color-sena-navy: #081b2b;
-    --color-sena-navy-soft: #0c273d;
+    --color-sena-navy-soft: #102b40;
     --color-sena-green: #8afd5d;
     --color-sena-green-strong: #39a900;
 
-    --animate-pop: pop 160ms ease-out;
+    --animate-pop: pop 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
     @keyframes pop {
         from {
             opacity: 0;
-            transform: scale(0.97) translateY(4px);
+            transform: scale(0.98) translateY(8px);
         }
         to {
             opacity: 1;
             transform: none;
         }
     }
+
+    @keyframes page-enter {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@layer base {
+    :root {
+        color-scheme: light;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-optical-sizing: auto;
+        background: #f2f7f8;
+    }
+
+    body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background: #f2f7f8;
+        color: #263746;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font: inherit;
+    }
+
+    button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+        color: #081b2b;
+        background: #c9f9b7;
+    }
+}
+
+.page-enter {
+    animation: page-enter 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Keep long data tables readable without imposing a custom scrollbar everywhere. */
+.admin-scroll {
+    scrollbar-color: #cbd5d1 transparent;
+    scrollbar-width: thin;
+}
+
+.sidebar-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+    display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
-        animation-duration: 1ms !important;
-        transition-duration: 1ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 }

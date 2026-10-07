@@ -9,7 +9,7 @@ import { administradoresResource } from "./administradores/administradores.resou
 import { aspirantesResource } from "./aspirantes/aspirantes.resource";
 import { instructoresResource } from "./instructores/instructores.resource";
 import { aprendicesResource } from "./aprendices/aprendices.resource";
-import { centrosResource } from "./centros/centros.resource";
+import { centrosResource } from "./centros/services/centros.resource";
 import { areasResource } from "./areas/areas.resource";
 import { programasResource } from "./programas/programas.resource";
 import { competenciasResource } from "./competencias/competencias.resource";
@@ -17,6 +17,7 @@ import { competenciaInstructorResource } from "./competencias/competenciaInstruc
 import { fichasResource } from "./fichas/fichas.resource";
 import { fichaInstructorResource } from "./fichas/fichaInstructor.resource";
 import { resultadosResource } from "./resultados/resultados.resource";
+import { calificacionesResource } from "./resultados/calificaciones.resource";
 import { ambientesResource } from "./ambientes/ambientes.resource";
 import { equiposResource } from "./equipos/equipos.resource";
 import { asignacionesResource } from "./asignaciones/asignaciones.resource";
@@ -38,6 +39,7 @@ export const RESOURCES = [
     fichasResource,
     fichaInstructorResource,
     resultadosResource,
+    calificacionesResource,
     ambientesResource,
     equiposResource,
     asignacionesResource,

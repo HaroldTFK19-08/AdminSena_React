@@ -42,7 +42,7 @@ export default function ConfiguracionPage() {
                                 type="text"
                                 value={nombreCentro}
                                 onChange={(e) => setNombreCentro(e.target.value)}
-                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700 focus:outline-none focus:border-[#081B2B] focus:bg-white transition-all"
+                                className="w-full rounded-xl border border-[#D8E6EB] bg-white px-4 py-2.5 text-sm text-[#0A2334] transition-all focus:border-[#0E6B54] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#0E6B54]/[0.12]"
                             />
                         </div>
                         <div className="space-y-1.5">
@@ -50,7 +50,7 @@ export default function ConfiguracionPage() {
                             <select
                                 value={idioma}
                                 onChange={(e) => setIdioma(e.target.value)}
-                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700 focus:outline-none focus:border-[#081B2B] focus:bg-white transition-all cursor-pointer"
+                                className="w-full cursor-pointer rounded-xl border border-[#D8E6EB] bg-white px-4 py-2.5 text-sm text-[#0A2334] transition-all focus:border-[#0E6B54] focus:outline-none focus:ring-4 focus:ring-[#0E6B54]/[0.12]"
                             >
                                 <option value="Español">Español</option>
                                 <option value="Inglés">Inglés</option>
@@ -61,7 +61,7 @@ export default function ConfiguracionPage() {
                             <select
                                 value={zonaHoraria}
                                 onChange={(e) => setZonaHoraria(e.target.value)}
-                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700 focus:outline-none focus:border-[#081B2B] focus:bg-white transition-all cursor-pointer"
+                                className="w-full cursor-pointer rounded-xl border border-[#D8E6EB] bg-white px-4 py-2.5 text-sm text-[#0A2334] transition-all focus:border-[#0E6B54] focus:outline-none focus:ring-4 focus:ring-[#0E6B54]/[0.12]"
                             >
                                 <option value="America/Bogota">América/Bogotá (GMT-5)</option>
                                 <option value="America/Mexico_City">América/Ciudad de México (GMT-6)</option>

@@ -6,5 +6,5 @@ import { instructoresResource } from "../instructores.resource";
  * comportamiento propio (filtros, acciones extra, vistas especiales), agréguelo aquí.
  */
 export default function InstructoresPage() {
-    return <CrudPage resource={instructoresResource} />;
+    return <CrudPage resource={instructoresResource} canCreate={false} />;
 }

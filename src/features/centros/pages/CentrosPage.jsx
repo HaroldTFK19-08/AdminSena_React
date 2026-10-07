@@ -1,5 +1,5 @@
 import CrudPage from "../../../shared/components/crud/CrudPage";
-import { centrosResource } from "../centros.resource";
+import { centrosResource } from "../services/centros.resource";
 
 /**
  * Página del dominio. Usa la página CRUD genérica; si este módulo necesita

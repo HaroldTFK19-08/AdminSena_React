@@ -5,7 +5,7 @@ const inputCls = (hasError) =>
         hasError ? "border-red-400 focus:border-red-500" : "border-slate-200 focus:border-sena-navy"
     }`;
 
-const HTML_TYPES = { text: "text", email: "email", password: "password", number: "number", date: "date", datetime: "datetime-local", url: "text" };
+const HTML_TYPES = { text: "text", email: "email", password: "password", number: "number", date: "date", datetime: "datetime-local", url: "text", file: "file" };
 
 export default function FieldControl({ field, register, error, isCreate, catalogs, lookup, loadingRefs }) {
     const id = `field-${field.name}`;
@@ -15,6 +15,13 @@ export default function FieldControl({ field, register, error, isCreate, catalog
     let control;
     if (field.type === "textarea") {
         control = <textarea id={id} rows={4} className={inputCls(error)} placeholder={field.placeholder} {...register(field.name, rules)} />;
+    } else if (field.type === "checkbox") {
+        control = (
+            <label className="inline-flex items-center gap-2 text-sm text-slate-700">
+                <input id={id} type="checkbox" className="h-4 w-4 accent-sena-green" {...register(field.name)} />
+                {field.label}
+            </label>
+        );
     } else if (field.type === "select" || field.type === "reference") {
         const options = field.type === "select" ? field.options : referenceOptions(field, catalogs, lookup);
         control = (
@@ -32,6 +39,7 @@ export default function FieldControl({ field, register, error, isCreate, catalog
             <input
                 id={id}
                 type={HTML_TYPES[field.type] ?? "text"}
+                accept={field.type === "file" ? field.accept : undefined}
                 step={field.type === "number" ? "1" : undefined}
                 autoComplete={field.type === "password" ? "new-password" : undefined}
                 placeholder={field.placeholder}

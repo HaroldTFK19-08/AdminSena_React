@@ -12,7 +12,16 @@ export const MOCK_PASSWORDS = {
 };
 
 const u = (id, nombre_1, nombre_2, apellido_1, apellido_2, tipo_identificacion, identificacion, rol, email) => ({
-    id, nombre_1, nombre_2, apellido_1, apellido_2, foto_perfil: null, tipo_identificacion, identificacion, rol, email,
+    id,
+    nombre_1,
+    nombre_2,
+    apellido_1,
+    apellido_2,
+    foto_perfil: null,
+    tipo_identificacion,
+    identificacion,
+    rol: ({ admin: "Admin", instructor: "Instructor", aprendiz: "Aprendiz", aspirant: "Aspirante" })[rol] ?? rol,
+    email,
 });
 
 export const seed = {

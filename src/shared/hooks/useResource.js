@@ -31,7 +31,7 @@ export function useResource(resource, params) {
         async (data) => {
             const created = await resource.service.create(data);
             invalidateCatalog(resource.key);
-            setItems((items) => [...items, created]);
+            setItems((items) => [...items, ...(Array.isArray(created) ? created : [created])]);
             return created;
         },
         [resource],

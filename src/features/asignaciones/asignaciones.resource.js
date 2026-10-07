@@ -16,6 +16,6 @@ export const asignacionesResource = defineResource({
         { name: "apprentice_id", label: "Aprendiz", type: "reference", ref: "apprentices", required: true, table: true },
         { name: "fecha_asignacion", label: "Fecha de asignación", type: "date", required: true, table: true },
         { name: "fecha_devolucion", label: "Fecha de devolución", type: "date", table: true },
-        { name: "estado", label: "Estado", type: "select", options: ESTADOS_ASIGNACION, badge: true, required: true, table: true },
+        { name: "Estado", label: "Estado", type: "select", options: ESTADOS_ASIGNACION, badge: true, required: true, table: true },
     ],
 });

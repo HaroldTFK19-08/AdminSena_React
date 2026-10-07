@@ -16,7 +16,7 @@ export const administradoresResource = defineResource({
         ...personColumns,
         { name: "user_id", label: "Usuario", type: "reference", ref: "users", required: true, refFilter: (u) => u.rol === ROLES.ADMIN, detail: false },
         { name: "cargo", label: "Cargo", required: true, maxLength: 255, table: true },
-        { name: "ubicacion_oficina", label: "Ubicación de oficina", maxLength: 255, table: true },
+        { name: "ubicacion_oficina", label: "Ubicación de oficina", required: true, maxLength: 255, table: true },
         { name: "direccion", label: "Dirección", maxLength: 255, wide: true },
     ],
     relations: [

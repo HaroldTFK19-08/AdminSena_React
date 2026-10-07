@@ -1,13 +1,13 @@
 export default function SeccionConfiguracion({ titulo, icono, children }) {
     return (
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="p-5 border-b border-slate-100 flex items-center gap-3 bg-slate-50/50">
-                <div className="w-9 h-9 rounded-lg bg-[#8AFD5D]/15 text-[#081B2B] flex items-center justify-center">
+        <div className="overflow-hidden rounded-[26px] border border-[#D8E6EB] bg-[#F7FBFC] shadow-[0_12px_26px_rgba(15,40,53,0.06)]">
+            <div className="flex items-center gap-3 border-b border-[#D8E6EB] p-5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#D8F7CB] text-[#0E6B54]">
                     <i className={`bi ${icono}`} />
                 </div>
-                <h2 className="font-bold text-[#081B2B]">{titulo}</h2>
+                <h2 className="font-bold text-[#0A2334]">{titulo}</h2>
             </div>
-            <div className="p-5 space-y-4">
+            <div className="space-y-4 p-5">
                 {children}
             </div>
         </div>

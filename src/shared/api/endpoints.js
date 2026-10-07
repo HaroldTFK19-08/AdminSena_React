@@ -9,36 +9,37 @@
 export const ENDPOINTS = Object.freeze({
     // Autenticación
     auth: {
-        login: "/login",
-        register: "/register",
-        logout: "/logout",
-        me: "/me",
+        login: "/auth/login",
+        register: "/auth/register",
+        logout: "/auth/logout",
+        me: "/auth/me",
+        profile: "/auth/profile",
     },
 
     // Personas
-    users: "/users",
+    users: "/usuarios",
     admins: "/admins",
-    aspirants: "/aspirants",
-    teachers: "/teachers",
-    apprentices: "/apprentices",
+    aspirants: "/aspirantes",
+    teachers: "/instructores",
+    apprentices: "/aprendices",
 
     // Estructura institucional
-    trainingcenters: "/trainingcenters",
+    trainingcenters: "/centros",
     areas: "/areas",
-    programs: "/programs",
-    competencies: "/competencies",
-    course_groups: "/course-groups",
-    environments: "/environments",
-    equipment: "/equipment",
+    programs: "/programas",
+    competencies: "/competencias",
+    course_groups: "/fichas",
+    environments: "/ambientes",
+    equipment: "/equipos",
 
     // Relaciones / operación
-    competency_teacher: "/competency-teacher",
-    course_group_teacher: "/course-group-teacher",
-    results: "/results",
-    assignments: "/assignments",
-
+    competency_teacher: "/competencias-instructores",
+    course_group_teacher: "/fichas-instructores",
+    results: "/resultados",
+    grades: "/calificaciones",
+    assignments: "/asignaciones",
     // Convocatorias y comunicación
-    offers: "/offers",
-    registrations: "/registrations",
-    news: "/news",
+    offers: "/ofertas",
+    registrations: "/inscripciones",
+    news: "/noticias",
 });

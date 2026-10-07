@@ -13,6 +13,7 @@ export const fichasResource = defineResource({
     fields: [
         { name: "codigo", label: "Código de ficha", required: true, maxLength: 255, table: true, mono: true },
         { name: "program_id", label: "Programa", type: "reference", ref: "programs", required: true, table: true, wide: true },
+        { name: "teacher_id", label: "Instructor principal", type: "reference", ref: "teachers", required: true, table: true },
         { name: "capacidad_aprendices", label: "Capacidad de aprendices", type: "number", min: 1, required: true, table: true },
     ],
     relations: [

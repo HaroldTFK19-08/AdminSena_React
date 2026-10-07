@@ -16,9 +16,28 @@ export function createResourceService(endpoint) {
         endpoint,
 
         async list(params) {
-            const payload = await http.get(endpoint, { params });
-            const items = unwrap(payload);
-            return Array.isArray(items) ? items : [];
+            const filters = { ...params };
+            const perPage = Number(filters.per_page) || 100;
+            let page = Number(filters.page) || 1;
+            let items = [];
+            let hasMore = true;
+
+            while (hasMore) {
+                const payload = await http.get(endpoint, {
+                    params: { ...filters, per_page: perPage, page },
+                });
+                const rows = unwrap(payload);
+                if (!Array.isArray(rows)) {
+                    throw new Error(`La respuesta de ${endpoint} no contiene una lista válida.`);
+                }
+                items = items.concat(rows);
+
+                const lastPage = Number(payload?.meta?.last_page);
+                hasMore = Number.isInteger(lastPage) && lastPage > page;
+                page += 1;
+            }
+
+            return items;
         },
 
         async get(id) {

@@ -1,10 +1,15 @@
-import { defineResource } from "../../shared/resources/registry";
-import { ENDPOINTS } from "../../shared/api/endpoints";
+import { defineResource } from "../../../shared/resources/registry";
+import { ENDPOINTS } from "../../../shared/api/endpoints";
+import { createResourceService } from "../../../shared/api/createResourceService";
+import getCentros from "./api";
 
 /** Tabla `trainingcenters`: raíz de la estructura institucional. */
+const centrosService = createResourceService(ENDPOINTS.trainingcenters);
+
 export const centrosResource = defineResource({
     key: "trainingcenters",
     endpoint: ENDPOINTS.trainingcenters,
+    service: { ...centrosService, list: getCentros },
     singular: "Centro",
     plural: "Centros de formación",
     icon: "bi-building-fill",

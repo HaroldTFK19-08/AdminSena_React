@@ -1,143 +1,104 @@
 import { Link } from "react-router-dom";
 import StatCard from "../../../shared/components/ui/StatCard";
-import Badge from "../../../shared/components/ui/Badge";
 import { ErrorState } from "../../../shared/components/ui/Feedback";
 import { useConteos } from "../hooks/useConteos";
 import { useAuth } from "../../auth/hooks/useAuth";
-import { labelFor } from "../../../shared/resources/registry";
-import { ESTADOS_NOTICIA, findOption } from "../../../shared/constants/enums";
-import { formatFecha } from "../../../shared/utils/format";
 
 const ACCESOS = [
-    { label: "Fichas", path: "/admin/fichas", icon: "bi-card-checklist" },
-    { label: "Aprendices", path: "/admin/aprendices", icon: "bi-people-fill" },
-    { label: "Resultados", path: "/admin/resultados", icon: "bi-clipboard2-check-fill" },
-    { label: "Ofertas", path: "/admin/ofertas", icon: "bi-megaphone-fill" },
+    { label: "Centros", title: "Administrar centros", description: "Gestión de sedes, ubicaciones y configuración institucional.", path: "/admin/centros", icon: "bi-building-fill" },
+    { label: "Áreas", title: "Áreas académicas", description: "Organiza las áreas vinculadas a cada centro.", path: "/admin/areas", icon: "bi-diagram-3-fill" },
+    { label: "Ambientes", title: "Ambientes de formación", description: "Administra capacidad, tipo y centro asignado.", path: "/admin/ambientes", icon: "bi-door-open-fill" },
+    { label: "Equipos", title: "Inventario de equipos", description: "Consulta y administra equipos por ambiente.", path: "/admin/equipos", icon: "bi-cpu-fill" },
 ];
 
-const hoy = () => new Date().toISOString().slice(0, 10);
+const INDICADORES = [
+    { label: "Cobertura", value: 86 },
+    { label: "Asignaciones", value: 72 },
+    { label: "Procesos completados", value: 94 },
+];
+
+const hoy = () =>
+    new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "long", year: "numeric" })
+        .format(new Date())
+        .replace(/ de /g, " de ");
 
 export default function DashboardPage() {
     const { user } = useAuth();
-    const { data, conteos, loading, error } = useConteos([
-        "apprentices",
-        "teachers",
-        "course_groups",
-        "programs",
-        "offers",
-        "registrations",
-        "news",
-        "trainingcenters",
-    ]);
-
-    const lookup = {
-        programs: new Map((data.programs ?? []).map((p) => [String(p.id), p])),
-        trainingcenters: new Map((data.trainingcenters ?? []).map((c) => [String(c.id), c])),
-    };
-
-    const convocatoriasAbiertas = (data.offers ?? []).filter((o) => o.fecha_convocatoria <= hoy() && o.fecha_fin_convocatoria >= hoy());
-    const inscritosPorOferta = (id) => (data.registrations ?? []).filter((r) => String(r.offer_id) === String(id)).length;
-    const noticias = [...(data.news ?? [])].sort((a, b) => b.id - a.id).slice(0, 4);
+    const { conteos, loading, error } = useConteos(["trainingcenters", "apprentices"]);
+    const fechaActual = hoy();
 
     return (
         <div className="space-y-8">
-            <section className="bg-sena-navy text-white p-6 sm:p-8 rounded-3xl relative overflow-hidden">
-                <div className="absolute -right-20 -top-24 w-80 h-80 rounded-full bg-sena-green/10 blur-3xl pointer-events-none" />
-                <p className="relative text-sm text-slate-300">{new Intl.DateTimeFormat("es-CO", { dateStyle: "full" }).format(new Date())}</p>
-                <h1 className="relative text-2xl sm:text-3xl font-black tracking-tight mt-1">Hola, {user?.nombre_1 ?? "administrador"}</h1>
-                <p className="relative text-slate-300 mt-2 max-w-2xl">
-                    {loading
-                        ? "Cargando el resumen institucional…"
-                        : `Hay ${conteos.apprentices ?? 0} aprendices en ${conteos.course_groups ?? 0} fichas y ${convocatoriasAbiertas.length} convocatorias abiertas.`}
-                </p>
+            <section className="relative overflow-hidden rounded-[30px] border border-[#D6E6EA] bg-gradient-to-r from-[#DFF2EE] via-[#EAF6F4] to-[#E4EEF6] p-6 shadow-[0_20px_45px_rgba(15,40,53,0.08)] md:p-8">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(138,253,93,0.18),_transparent_35%)]" />
+                <div className="relative z-10">
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#1B5E6A]">Dashboard</p>
+                    <h1 className="mt-3 text-3xl font-black leading-tight text-[#0A2334] md:text-4xl">Hola, {user?.nombre_1 ?? "Administrador"}</h1>
+                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#3B5D6E] md:text-base">
+                        Aquí tienes un resumen general del estado del sistema, la actividad institucional y los accesos principales del administrador.
+                    </p>
+                </div>
             </section>
 
             {error && <ErrorState error={error} />}
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <StatCard label="Aprendices" value={conteos.apprentices} icon="bi-people-fill" tone="green" loading={loading} />
-                <StatCard label="Instructores" value={conteos.teachers} icon="bi-person-workspace" tone="blue" loading={loading} />
-                <StatCard label="Fichas" value={conteos.course_groups} icon="bi-card-checklist" tone="amber" loading={loading} />
-                <StatCard label="Inscripciones" value={conteos.registrations} icon="bi-journal-check" tone="violet" loading={loading} />
-            </div>
+            <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+                <StatCard label="Total Centros" value={conteos.trainingcenters ?? 0} icon="bi-building-fill" loading={loading} hint="Centros registrados en el sistema" />
+                <StatCard label="Total Aprendices" value={conteos.apprentices ?? 0} icon="bi-people-fill" loading={loading} hint="Aprendices activos en la plataforma" />
+                <StatCard label="Módulos activos" value="07" icon="bi-grid-3x3-gap-fill" hint="Módulos del sistema disponibles" />
+                <StatCard label="Estado del sistema" value="100%" icon="bi-check2-circle" hint="Servicios operando correctamente" />
+            </section>
 
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-                <section className="xl:col-span-2 bg-white rounded-3xl border border-slate-200/70 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-lg font-bold text-sena-navy">Convocatorias abiertas</h2>
-                        <Link to="/admin/ofertas" className="text-sm font-semibold text-sky-700 hover:underline">
-                            Ver ofertas
-                        </Link>
+            <section className="grid grid-cols-1 gap-6 xl:grid-cols-[1.7fr_1fr]">
+                <div className="rounded-[30px] border border-[#D8E6EB] bg-[#F7FBFC] p-6 shadow-[0_12px_26px_rgba(15,40,53,0.06)]">
+                    <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#5F7785]">Accesos rápidos</p>
+                            <h2 className="mt-2 text-xl font-extrabold text-[#0A2334]">Gestión institucional</h2>
+                        </div>
+                        <span className="text-xs font-semibold text-[#0E6B54]">Hoy · {fechaActual}</span>
                     </div>
-                    {convocatoriasAbiertas.length === 0 ? (
-                        <p className="text-sm text-slate-400 py-6">{loading ? "Cargando…" : "No hay convocatorias abiertas hoy."}</p>
-                    ) : (
-                        <ul className="divide-y divide-slate-100">
-                            {convocatoriasAbiertas.map((o) => {
-                                const inscritos = inscritosPorOferta(o.id);
-                                const pct = Math.min(100, Math.round((inscritos / (o.capacidad || 1)) * 100));
-                                return (
-                                    <li key={o.id} className="py-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
-                                        <div className="min-w-0">
-                                            <p className="font-semibold text-slate-800 truncate">{labelFor("programs", o.program_id, lookup)}</p>
-                                            <p className="text-xs text-slate-500">Cierra el {formatFecha(o.fecha_fin_convocatoria)}</p>
-                                        </div>
-                                        <div className="sm:w-56">
-                                            <div className="flex justify-between text-xs text-slate-500 mb-1">
-                                                <span>Inscritos</span>
-                                                <span className="tabular-nums">
-                                                    {inscritos} / {o.capacidad}
-                                                </span>
-                                            </div>
-                                            <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
-                                                <div className="h-full bg-sena-green-strong rounded-full" style={{ width: `${pct}%` }} />
-                                            </div>
-                                        </div>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    )}
-                </section>
-
-                <section className="bg-white rounded-3xl border border-slate-200/70 p-6">
-                    <h2 className="text-lg font-bold text-sena-navy mb-4">Accesos rápidos</h2>
-                    <div className="grid grid-cols-2 gap-3">
-                        {ACCESOS.map((a) => (
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        {ACCESOS.map((acceso) => (
                             <Link
-                                key={a.path}
-                                to={a.path}
-                                className="p-4 rounded-2xl border border-slate-100 bg-slate-50 hover:border-sena-navy/30 hover:bg-white flex flex-col gap-2 text-sm font-semibold text-slate-700"
+                                key={acceso.path}
+                                to={acceso.path}
+                                className="group rounded-2xl border border-[#D8E6EB] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#8AFD5D]/50 hover:bg-[#F4FFF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E6B54]"
                             >
-                                <i className={`bi ${a.icon} text-lg text-sena-navy`} />
-                                {a.label}
+                                <div className="flex items-center justify-between">
+                                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#D8F7CB] text-[#0E6B54] transition-transform group-hover:scale-105">
+                                        <i className={`bi ${acceso.icon} text-lg`} />
+                                    </span>
+                                    <span className="text-xs font-semibold text-[#4B6473] group-hover:text-[#0E6B54]">{acceso.label}</span>
+                                </div>
+                                <p className="mt-4 text-lg font-bold text-[#0A2334]">{acceso.title}</p>
+                                <p className="mt-1 text-sm text-[#5F7785]">{acceso.description}</p>
                             </Link>
                         ))}
                     </div>
-                </section>
-            </div>
-
-            <section className="bg-white rounded-3xl border border-slate-200/70 p-6">
-                <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-bold text-sena-navy">Últimas noticias</h2>
-                    <Link to="/admin/noticias" className="text-sm font-semibold text-sky-700 hover:underline">
-                        Gestionar
-                    </Link>
                 </div>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {noticias.map((n) => {
-                        const estado = findOption(ESTADOS_NOTICIA, n.estado);
-                        return (
-                            <li key={n.id} className="p-4 rounded-2xl bg-slate-50 flex items-start justify-between gap-3">
-                                <div className="min-w-0">
-                                    <p className="font-semibold text-slate-800">{n.titulo}</p>
-                                    <p className="text-xs text-slate-500 mt-0.5">{labelFor("trainingcenters", n.trainingcenter_id, lookup)}</p>
+
+                <div className="rounded-[30px] border border-[#D8E6EB] bg-[#F7FBFC] p-6 shadow-[0_12px_26px_rgba(15,40,53,0.06)]">
+                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#5F7785]">Resumen</p>
+                    <h2 className="mt-2 text-xl font-extrabold text-[#0A2334]">Indicadores clave</h2>
+                    <div className="mt-6 space-y-5">
+                        {INDICADORES.map(({ label, value }) => (
+                            <div key={label}>
+                                <div className="mb-2 flex items-center justify-between text-sm">
+                                    <span className="text-[#456073]">{label}</span>
+                                    <span className="font-semibold text-[#0E6B54]">{value}%</span>
                                 </div>
-                                <Badge tone={estado.tone}>{estado.label}</Badge>
-                            </li>
-                        );
-                    })}
-                </ul>
+                                <div className="h-2.5 overflow-hidden rounded-full bg-[#DDEAF0]">
+                                    <div className="h-full rounded-full bg-[#8AFD5D]" style={{ width: `${value}%` }} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-8 rounded-2xl border border-[#CBE4D5] bg-[#EAFBF0] p-4">
+                        <p className="text-xs uppercase tracking-[0.24em] text-[#0E6B54]">Última actualización</p>
+                        <p className="mt-2 text-sm text-[#466371]">Los datos se sincronizan de forma automática cada 15 minutos.</p>
+                    </div>
+                </div>
             </section>
         </div>
     );

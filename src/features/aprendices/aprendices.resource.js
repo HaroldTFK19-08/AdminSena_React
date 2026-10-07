@@ -16,9 +16,9 @@ export const aprendicesResource = defineResource({
         ...personColumns,
         { name: "user_id", label: "Usuario", type: "reference", ref: "users", required: true, refFilter: (u) => u.rol === ROLES.APRENDIZ, detail: false },
         { name: "course_group_id", label: "Ficha", type: "reference", ref: "course_groups", required: true, table: true },
-        { name: "status", label: "Estado", type: "select", options: ESTADOS_APRENDIZ, badge: true, required: true, table: true },
-        { name: "start_date", label: "Fecha de inicio", type: "date" },
-        { name: "end_date", label: "Fecha de fin", type: "date" },
+        { name: "estado", label: "Estado", type: "select", options: ESTADOS_APRENDIZ, badge: true, required: true, table: true, defaultValue: "Activo" },
+        { name: "fecha_inicio", label: "Fecha de inicio", type: "date" },
+        { name: "fecha_fin", label: "Fecha de fin", type: "date" },
     ],
     relations: [
         {

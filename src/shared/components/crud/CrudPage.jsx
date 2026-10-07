@@ -20,7 +20,7 @@ import { useReferenceData } from "../../hooks/useReferenceData";
  *  - headerExtra: acciones adicionales en el encabezado
  *  - children:    contenido extra debajo de la tabla
  */
-export default function CrudPage({ resource, readOnly = false, canDelete = true, headerExtra, children }) {
+export default function CrudPage({ resource, readOnly = false, canCreate = true, canDelete = true, headerExtra, children }) {
     const toast = useToast();
     const { items, loading, error, reload, create, update, remove } = useResource(resource);
     const [refVersion, setRefVersion] = useState(0);
@@ -60,7 +60,7 @@ export default function CrudPage({ resource, readOnly = false, canDelete = true,
                 actions={
                     <>
                         {headerExtra}
-                        {!readOnly && (
+                        {!readOnly && canCreate && (
                             <Button icon="bi-plus-lg" size="lg" onClick={() => open("form")}>
                                 Nuevo {resource.singular.toLowerCase()}
                             </Button>

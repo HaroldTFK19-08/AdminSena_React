@@ -6,5 +6,5 @@ import { aprendicesResource } from "../aprendices.resource";
  * comportamiento propio (filtros, acciones extra, vistas especiales), agréguelo aquí.
  */
 export default function AprendicesPage() {
-    return <CrudPage resource={aprendicesResource} />;
+    return <CrudPage resource={aprendicesResource} canCreate={false} />;
 }

@@ -36,6 +36,7 @@ export function initialValues(fields, record) {
     return Object.fromEntries(
         fields.map((f) => {
             if (f.type === "password") return [f.name, ""];
+            if (f.type === "file") return [f.name, undefined];
             const value = record ? record[f.name] : f.defaultValue;
             return [f.name, toInputValue(f.type, value ?? "")];
         }),
@@ -45,15 +46,34 @@ export function initialValues(fields, record) {
 /** Convierte los valores del formulario al payload que espera el backend. */
 export function serialize(fields, values, isCreate) {
     const payload = {};
+    let hasFile = false;
     for (const f of fields) {
         let value = values[f.name];
         if (f.type === "password" && !isCreate && !value) continue; // no cambiar contraseña
+        if (f.type === "file") {
+            value = value?.[0] ?? (typeof File !== "undefined" && value instanceof File ? value : null);
+            if (value) {
+                payload[f.name] = value;
+                hasFile = true;
+            }
+            continue;
+        }
         if (value === "" || value === undefined) value = null;
         else if (f.type === "number" || f.type === "reference") value = Number(value);
         else if (f.type === "datetime") value = value.replace("T", " ") + (value.length === 16 ? ":00" : "");
+        else if (f.type === "checkbox") value = Boolean(value);
         else if (typeof value === "string") value = value.trim();
         payload[f.name] = value;
     }
+
+    if (hasFile) {
+        const formData = new FormData();
+        for (const [name, value] of Object.entries(payload)) {
+            if (value === null || value === undefined) continue;
+            formData.append(name, typeof value === "boolean" ? (value ? "1" : "0") : value);
+        }
+        return formData;
+    }
+
     return payload;
 }
-

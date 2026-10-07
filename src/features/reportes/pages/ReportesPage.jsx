@@ -36,12 +36,13 @@ export default function ReportesPage() {
                 <StatCard label="Fichas" value={conteos.course_groups} icon="bi-card-checklist" tone="rose" loading={loading} />
             </div>
 
-            <section>
-                <h2 className="text-lg font-black text-sena-navy mb-4">Reportes disponibles</h2>
+            <section className="rounded-[26px] border border-[#D8E6EB] bg-[#F7FBFC] p-5 shadow-[0_12px_26px_rgba(15,40,53,0.06)] sm:p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#5F7785]">Exportación</p>
+                <h2 className="mb-4 mt-2 text-xl font-extrabold text-[#0A2334]">Reportes disponibles</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                     {REPORTES.map((reporte) => (
-                        <article key={reporte.id} className="bg-white p-5 rounded-2xl border border-slate-200/70 flex gap-4">
-                            <div className="w-12 h-12 shrink-0 rounded-xl bg-sena-green/20 text-sena-navy flex items-center justify-center text-xl">
+                        <article key={reporte.id} className="flex gap-4 rounded-2xl border border-[#D8E6EB] bg-white p-5 shadow-sm">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#D8F7CB] text-xl text-[#0E6B54]">
                                 <i className={`bi ${reporte.icono}`} />
                             </div>
                             <div className="flex-1 space-y-3">

@@ -34,4 +34,8 @@ export const authService = {
     async me() {
         return unwrap(await http.get(ENDPOINTS.auth.me));
     },
+
+    async updateProfile(data) {
+        return unwrap(await http.put(ENDPOINTS.auth.profile, data));
+    },
 };

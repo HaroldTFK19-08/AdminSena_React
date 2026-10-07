@@ -15,15 +15,14 @@ export const TIPOS_IDENTIFICACION = [
     { value: "TI", label: "Tarjeta de identidad" },
     { value: "CE", label: "Cédula de extranjería" },
     { value: "PPT", label: "Permiso por protección temporal" },
-    { value: "PAS", label: "Pasaporte" },
 ];
 
 // users.rol (enum)
 export const ROLES = {
-    ADMIN: "admin",
-    INSTRUCTOR: "instructor",
-    APRENDIZ: "aprendiz",
-    ASPIRANTE: "aspirante",
+    ADMIN: "Admin",
+    INSTRUCTOR: "Instructor",
+    APRENDIZ: "Aprendiz",
+    ASPIRANTE: "Aspirante",
 };
 
 export const ROLES_OPCIONES = [
@@ -35,65 +34,77 @@ export const ROLES_OPCIONES = [
 
 // programs.nivel_programa
 export const NIVELES_PROGRAMA = [
-    { value: "auxiliar", label: "Auxiliar" },
-    { value: "operario", label: "Operario" },
-    { value: "tecnico", label: "Técnico" },
-    { value: "tecnologo", label: "Tecnólogo" },
-    { value: "especializacion", label: "Especialización tecnológica" },
+    { value: "Tecnico", label: "Técnico" },
+    { value: "Tecnologo", label: "Tecnólogo" },
 ];
 
 // teachers.tipo_instructor
 export const TIPOS_INSTRUCTOR = [
-    { value: "planta", label: "Planta" },
-    { value: "contratista", label: "Contratista" },
+    { value: "Planta", label: "Planta" },
+    { value: "Contratista", label: "Contratista" },
 ];
 
-// apprentices.status
+// apprentices.estado
 export const ESTADOS_APRENDIZ = [
-    { value: "en_formacion", label: "En formación", tone: "success" },
-    { value: "condicionado", label: "Condicionado", tone: "warning" },
-    { value: "aplazado", label: "Aplazado", tone: "warning" },
-    { value: "cancelado", label: "Cancelado", tone: "danger" },
-    { value: "certificado", label: "Certificado", tone: "info" },
+    { value: "Activo", label: "Activo", tone: "success" },
+    { value: "Retirado", label: "Retirado", tone: "danger" },
+    { value: "Certificado", label: "Certificado", tone: "info" },
 ];
 
-// registrations.status
+// registrations.estado
 export const ESTADOS_INSCRIPCION = [
-    { value: "pendiente", label: "Pendiente", tone: "warning" },
-    { value: "preseleccionado", label: "Preseleccionado", tone: "info" },
-    { value: "seleccionado", label: "Seleccionado", tone: "success" },
-    { value: "rechazado", label: "Rechazado", tone: "danger" },
+    { value: "Registrado", label: "Registrado", tone: "warning" },
+    { value: "En proceso", label: "En proceso", tone: "info" },
+    { value: "Seleccionado", label: "Seleccionado", tone: "success" },
+    { value: "Rechazado", label: "Rechazado", tone: "danger" },
+    { value: "Cancelada", label: "Cancelada", tone: "neutral" },
 ];
 
-// results.estado_competencia
+// grades.estado_resultado
 export const ESTADOS_COMPETENCIA = [
-    { value: "pendiente", label: "Pendiente", tone: "neutral" },
-    { value: "en_curso", label: "En curso", tone: "info" },
-    { value: "aprobado", label: "Aprobado", tone: "success" },
-    { value: "no_aprobado", label: "No aprobado", tone: "danger" },
+    { value: "Pendiente", label: "Pendiente", tone: "neutral" },
+    { value: "Aprobado", label: "Aprobado", tone: "success" },
+    { value: "Reprobado", label: "Reprobado", tone: "danger" },
 ];
 
-// assignments.estado
+// assignments.Estado
 export const ESTADOS_ASIGNACION = [
-    { value: "asignado", label: "Asignado", tone: "info" },
-    { value: "devuelto", label: "Devuelto", tone: "success" },
-    { value: "vencido", label: "Vencido", tone: "danger" },
+    { value: "Activo", label: "Activo", tone: "info" },
+    { value: "Inactivo", label: "Inactivo", tone: "neutral" },
 ];
 
 // news.estado
 export const ESTADOS_NOTICIA = [
-    { value: "borrador", label: "Borrador", tone: "warning" },
-    { value: "publicada", label: "Publicada", tone: "success" },
-    { value: "archivada", label: "Archivada", tone: "neutral" },
+    { value: "Creado", label: "Creado", tone: "neutral" },
+    { value: "Pendiente", label: "Pendiente", tone: "warning" },
+    { value: "Publicado", label: "Publicado", tone: "success" },
 ];
 
 // environments.tipo_ambiente
 export const TIPOS_AMBIENTE = [
-    { value: "aula", label: "Aula" },
-    { value: "laboratorio", label: "Laboratorio" },
-    { value: "taller", label: "Taller" },
-    { value: "auditorio", label: "Auditorio" },
-    { value: "virtual", label: "Virtual" },
+    { value: "Software", label: "Software" },
+    { value: "TICS", label: "TICS" },
+    { value: "Laboratorio", label: "Laboratorio" },
+    { value: "Cocina", label: "Cocina" },
+];
+
+export const CATEGORIAS_NOTICIA = [
+    { value: "Tecnologia", label: "Tecnología" },
+    { value: "Educacion", label: "Educación" },
+    { value: "Deporte", label: "Deporte" },
+    { value: "Politica", label: "Política" },
+    { value: "Artistica", label: "Artística" },
+    { value: "Diseño", label: "Diseño" },
+];
+
+export const EPS = [
+    { value: "SURA", label: "SURA" },
+    { value: "Sanitas", label: "Sanitas" },
+    { value: "Nueva EPS", label: "Nueva EPS" },
+    { value: "Salud Total", label: "Salud Total" },
+    { value: "Compensar", label: "Compensar" },
+    { value: "Coosalud", label: "Coosalud" },
+    { value: "Emssanar", label: "Emssanar" },
 ];
 
 // equipment.equipment_type

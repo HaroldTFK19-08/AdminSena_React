@@ -11,7 +11,7 @@ export const competenciasResource = defineResource({
     description: "Competencias que se evalúan a los aprendices y que orientan los instructores.",
     display: (row) => (row ? `${row.codigo} · ${row.nombre}` : ""),
     fields: [
-        { name: "codigo", label: "Código", required: true, maxLength: 255, table: true, mono: true },
+        { name: "codigo", label: "Código", maxLength: 255, table: true, mono: true },
         { name: "nombre", label: "Nombre", required: true, maxLength: 255, table: true, wide: true },
         { name: "descripcion", label: "Descripción", type: "textarea" },
         { name: "fecha_inicio", label: "Fecha de inicio", type: "date", table: true },

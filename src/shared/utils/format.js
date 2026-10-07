@@ -1,4 +1,17 @@
+import { env } from "../../config/env";
+
 /** Utilidades de formato compartidas por todos los dominios. */
+
+export function mediaUrl(value) {
+    if (!value) return "";
+
+    const path = String(value);
+    if (/^(https?:|data:|blob:)/i.test(path)) return path;
+
+    const normalizedPath = path.replace(/^\/+/, "");
+    const storagePath = normalizedPath.startsWith("storage/") ? normalizedPath : `storage/${normalizedPath}`;
+    return `${env.apiUrl}/${storagePath}`;
+}
 
 export function nombreCompleto(user) {
     if (!user) return "";

@@ -14,7 +14,7 @@ export const inscripcionesResource = defineResource({
     fields: [
         { name: "aspirant_id", label: "Aspirante", type: "reference", ref: "aspirants", required: true, table: true },
         { name: "offer_id", label: "Oferta", type: "reference", ref: "offers", required: true, table: true, wide: true },
-        { name: "status", label: "Estado", type: "select", options: ESTADOS_INSCRIPCION, badge: true, required: true, table: true },
-        { name: "fecha_inscripcion", label: "Fecha de inscripción", type: "datetime", table: true },
+        { name: "estado", label: "Estado", type: "select", options: ESTADOS_INSCRIPCION, badge: true, required: true, table: true },
+        { name: "Fecha_inscripcion", label: "Fecha de inscripción", type: "datetime", table: true },
     ],
 });

@@ -6,5 +6,5 @@ import { aspirantesResource } from "../aspirantes.resource";
  * comportamiento propio (filtros, acciones extra, vistas especiales), agréguelo aquí.
  */
 export default function AspirantesPage() {
-    return <CrudPage resource={aspirantesResource} />;
+    return <CrudPage resource={aspirantesResource} canCreate={false} />;
 }

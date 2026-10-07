@@ -12,7 +12,7 @@ export const programasResource = defineResource({
     description: "Programas de formación. Cada programa pertenece a un área y se oferta en fichas y convocatorias.",
     display: (row) => row?.nombre ?? `Programa #${row?.id}`,
     fields: [
-        { name: "codigo_programa", label: "Código", required: true, maxLength: 255, table: true, mono: true },
+        { name: "codigo_programa", label: "Código", required: true, maxLength: 50, table: true, mono: true },
         { name: "nombre", label: "Nombre", required: true, maxLength: 255, table: true },
         { name: "nivel_programa", label: "Nivel", type: "select", options: NIVELES_PROGRAMA, required: true, table: true },
         { name: "area_id", label: "Área", type: "reference", ref: "areas", required: true, table: true },

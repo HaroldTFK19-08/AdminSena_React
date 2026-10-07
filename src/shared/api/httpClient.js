@@ -2,6 +2,8 @@ import { env } from "../../config/env";
 import { tokenStorage } from "./tokenStorage";
 import { ApiError, defaultMessageFor } from "./ApiError";
 
+const API_BASE_URL = `${env.apiUrl}/v1`;
+
 /** Evento global que se dispara cuando el backend responde 401. */
 export const UNAUTHORIZED_EVENT = "adminsena:unauthorized";
 
@@ -49,7 +51,7 @@ async function realRequest(method, path, { params, body, headers = {}, signal } 
 
     let response;
     try {
-        response = await fetch(`${env.apiUrl}${path}${buildQuery(params)}`, {
+        response = await fetch(`${API_BASE_URL}${path}${buildQuery(params)}`, {
             method: httpMethod,
             headers: finalHeaders,
             body: body === undefined ? undefined : isFormData ? body : JSON.stringify(body),
